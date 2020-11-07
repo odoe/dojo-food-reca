@@ -1,8 +1,13 @@
 import { create, tsx } from '@dojo/framework/core/vdom';
+import Button from '@dojo/widgets/button';
 
-import { State } from '../interfaces';
+import { FoodItem } from '../interfaces';
 
-const factory = create().properties<State>();
+type FoodItems = {
+	foodItems: FoodItem[]
+};
+
+const factory = create().properties<FoodItems>();
 
 export default factory(function FoodItemList({ properties }) {
 	const { foodItems = [] } = properties();
@@ -21,15 +26,15 @@ export default factory(function FoodItemList({ properties }) {
 					foodItems.length > 0 ? (
 						foodItems.map((foodItem) => (
 							<tr key={foodItem.id}>
-								<td>{ foodItem.id }</td>
+								<td>{ String(foodItem.id) }</td>
 								<td>{ foodItem.food }</td>
-								<td>{ foodItem.cost }</td>
+								<td>{ foodItem.cost.toFixed(2) }</td>
 								<td>
-									<button>Edit</button>
-									<button>Delete</button>
-									<button>{
+									<Button>Edit</Button>
+									<Button>Delete</Button>
+									<Button>{
 										foodItem.status ? 'bought' : 'pending'
-									}</button>
+									}</Button>
 							</td>
 						</tr>
 					))

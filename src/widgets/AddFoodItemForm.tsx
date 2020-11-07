@@ -4,20 +4,18 @@ import { FormMiddleware } from '@dojo/widgets/form/middleware';
 import TextInput from '@dojo/widgets/text-input';
 import Button from '@dojo/widgets/button';
 
-import { State } from '../interfaces';
+import { FoodItem } from '../interfaces';
 
-const factory = create().properties<State>();
+const factory = create();
 
-export default factory(function AddFoodItemForm({ properties }) {
-	const props = properties();
+export default factory(function AddFoodItemForm() {
 	return (
 		<Form
-			initialValue={props}
 			onSubmit={(values) => {
 				console.log(values);
 			}}
 		>
-			{({ valid, disabled, field }: FormMiddleware<State>) => {
+			{({ valid, disabled, field }: FormMiddleware<FoodItem>) => {
 				const food = field('food', true);
 				const cost = field('cost', true);
 

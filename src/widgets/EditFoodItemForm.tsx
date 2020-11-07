@@ -4,9 +4,9 @@ import { FormMiddleware } from '@dojo/widgets/form/middleware';
 import TextInput from '@dojo/widgets/text-input';
 import Button from '@dojo/widgets/button';
 
-import { State } from '../interfaces';
+import { FoodItem } from '../interfaces';
 
-const factory = create().properties<State>();
+const factory = create().properties<FoodItem>();
 
 export default factory(function EditFoodItemForm({ properties }) {
 	const props = properties();
@@ -17,7 +17,7 @@ export default factory(function EditFoodItemForm({ properties }) {
 				console.log(values);
 			}}
 		>
-			{({ valid, disabled, field, value }: FormMiddleware<State>) => {
+			{({ valid, disabled, field, value }: FormMiddleware<FoodItem>) => {
 				const food = field('food', true);
 				const cost = field('cost', true);
 
