@@ -1,2 +1,2 @@
-// import './App';
+import './App';
 import './widgets/all';
