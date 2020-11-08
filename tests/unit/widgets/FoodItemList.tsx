@@ -7,78 +7,78 @@ import FoodItemList from '../../../src/widgets/FoodItemList';
 import { FoodItem } from '../../../src/interfaces';
 
 describe('FoodItemList', () => {
-    const noop = () => { };
-    const emptyFoodItems: FoodItem[] = [];
-    const foodItems: FoodItem[] = [
-        {
-            id: 0,
-            food: 'Apple',
-            cost: 1.99
-        },
-        {
-            id: 1,
-            food: 'Lettuce',
-            cost: 0.75
-        }
-    ];
+	const noop = () => { };
+	const emptyFoodItems: FoodItem[] = [];
+	const foodItems: FoodItem[] = [
+		{
+			id: 0,
+			food: 'Apple',
+			cost: 1.99
+		},
+		{
+			id: 1,
+			food: 'Lettuce',
+			cost: 0.75
+		}
+	];
 	const baseAssertion = assertion(() => (
-        <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Food</th>
-                <th>Cost</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td colSpan={3}>No food available</td>
-        </tr>
-        </tbody>
-    </table>
-    ));
-    const listAssertion = assertion(() => (
-        <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Food</th>
-                <th>Cost</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr key={0}>
-            <td>0</td>
-            <td>Apple</td>
-            <td>1.99</td>
-            <td>
-                <Button onClick={noop}>Edit</Button>
-                <Button onClick={noop}>Delete</Button>
-                <Button onClick={noop}>Purchase</Button>
-            </td>
-        </tr>
-        <tr key={1}>
-            <td>1</td>
-            <td>Lettuce</td>
-            <td>0.75</td>
-            <td>
-                <Button onClick={noop}>Edit</Button>
-                <Button onClick={noop}>Delete</Button>
-                <Button onClick={noop}>Purchase</Button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    ));
-    
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Food</th>
+					<th>Cost</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colSpan={3}>No food available</td>
+				</tr>
+			</tbody>
+		</table>
+	));
+	const listAssertion = assertion(() => (
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Food</th>
+					<th>Cost</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr key={0}>
+					<td>0</td>
+					<td>Apple</td>
+					<td>1.99</td>
+					<td>
+						<Button onClick={noop}>Edit</Button>
+						<Button onClick={noop}>Delete</Button>
+						<Button onClick={noop}>Purchase</Button>
+					</td>
+				</tr>
+				<tr key={1}>
+					<td>1</td>
+					<td>Lettuce</td>
+					<td>0.75</td>
+					<td>
+						<Button onClick={noop}>Edit</Button>
+						<Button onClick={noop}>Delete</Button>
+						<Button onClick={noop}>Purchase</Button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	));
+
 	it('default renders correctly', () => {
 		const r = renderer(() => <FoodItemList foodItems={emptyFoodItems}/>);
 		r.expect(baseAssertion);
-    });
-    it('can render food items', () => {;
+	});
+	it('can render food items', () => {;
 		const r = renderer(() => <FoodItemList foodItems={foodItems}/>);
 		r.expect(listAssertion);
-    })
+	})
 });

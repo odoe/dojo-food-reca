@@ -9,16 +9,16 @@ import EditFoodItemForm from '../../../src/widgets/EditFoodItemForm';
 import { FoodItem } from '../../../src/interfaces';
 
 describe('EditFoodItemForm', () => {
-    const noop = () => { };
-    const value: FoodItem = {
-        id: 0,
-        food: 'Apple',
-        cost: 1.99
-    };
+	const noop = () => { };
+	const value: FoodItem = {
+		id: 0,
+		food: 'Apple',
+		cost: 1.99
+	};
 	const baseAssertion = assertion(() => (
 		<Form
-            name="edit-food-item-form"
-            initialValue={value}
+			name="edit-food-item-form"
+			initialValue={value}
 			onSubmit={noop}
 		>
 			{() => {
@@ -58,10 +58,10 @@ describe('EditFoodItemForm', () => {
 						>
 							Add Food Item
 						</Button>
-                        <Button
+						<Button
 							key="cancel"
-                            disabled={false}
-                            onClick={noop}
+							disabled={false}
+							onClick={noop}
 						>
 							Add Food Item
 						</Button>

@@ -11,29 +11,29 @@ import { FoodItem } from '../../src/interfaces';
 import * as css from '../../src/App.m.css';
 
 describe('App', () => {
-    const value: FoodItem = {
-        id: 0,
-        food: 'Apple',
-        cost: 1.99
-    };
-    let editing = false;
-    const baseAssertion = assertion(() => (
-        <div classes={[css.root]}>
-            <div>
-                <FoodItemList foodItems={undefined as any} />
-            </div>
-            <div classes={[css.main]}>
-                {
-                    editing ?
-                        <EditFoodItem {...value} />
-                        :
-                        <AddFoodItem />
-                }
-            </div>
-        </div>
-    ));
-    it('default renders correctly', () => {
-        const r = renderer(() => <App />);
-        r.expect(baseAssertion);
-    });
+	const value: FoodItem = {
+		id: 0,
+		food: 'Apple',
+		cost: 1.99
+	};
+	let editing = false;
+	const baseAssertion = assertion(() => (
+		<div classes={[css.root]}>
+			<div>
+				<FoodItemList foodItems={undefined as any} />
+			</div>
+			<div classes={[css.main]}>
+				{
+					editing ?
+					<EditFoodItem {...value} />
+					:
+					<AddFoodItem />
+				}
+			</div>
+		</div>
+	));
+	it('default renders correctly', () => {
+		const r = renderer(() => <App />);
+		r.expect(baseAssertion);
+	});
 });
