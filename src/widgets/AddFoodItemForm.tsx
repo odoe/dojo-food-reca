@@ -4,15 +4,19 @@ import { FormMiddleware } from '@dojo/widgets/form/middleware';
 import TextInput from '@dojo/widgets/text-input';
 import Button from '@dojo/widgets/button';
 
+import store from '../middleware/store';
+import { addFoodItem } from '../processes/foodItemsProcesses';
+
 import { FoodItem } from '../interfaces';
 
-const factory = create();
+const factory = create({ store });
 
-export default factory(function AddFoodItemForm() {
+export default factory(function AddFoodItemForm({ middleware: { store } }) {
 	return (
 		<Form
-			onSubmit={(values) => {
-				console.log(values);
+			onSubmit={(foodItem: FoodItem) => {
+				console.log(foodItem);
+				store.executor(addFoodItem)(foodItem);
 			}}
 		>
 			{({ valid, disabled, field }: FormMiddleware<FoodItem>) => {

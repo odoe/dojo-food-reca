@@ -1,13 +1,12 @@
 export interface FoodItem {
 	id: number;
-    userId?: number;
     food: string;
     cost: number;
-    status?: boolean;
+    status?: string;
 }
 
-export interface State extends FoodItem {
-    foodItem?: FoodItem;
-    foodItems?: FoodItem[];
-    editing?: boolean;
+export interface State {
+	editing: boolean;
+	selectedItem?: FoodItem,
+    foodItems: FoodItem[];
 }

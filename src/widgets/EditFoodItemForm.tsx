@@ -4,20 +4,27 @@ import { FormMiddleware } from '@dojo/widgets/form/middleware';
 import TextInput from '@dojo/widgets/text-input';
 import Button from '@dojo/widgets/button';
 
+import store from '../middleware/store';
+import { updateEditing, editFoodItem } from '../processes/foodItemsProcesses';
+
 import { FoodItem } from '../interfaces';
 
-const factory = create().properties<FoodItem>();
+const factory = create({ store }).properties<FoodItem>();
 
-export default factory(function EditFoodItemForm({ properties }) {
+export default factory(function EditFoodItemForm({ properties, middleware: { store } }) {
 	const props = properties();
 	return (
 		<Form
 			initialValue={props}
-			onSubmit={(values) => {
-				console.log(values);
+			onSubmit={(foodItem: FoodItem) => {
+				console.log(foodItem);
+				store.executor(editFoodItem)(foodItem);
+				store.executor(updateEditing)({
+					editing: false
+				});
 			}}
 		>
-			{({ valid, disabled, field, value }: FormMiddleware<FoodItem>) => {
+			{({ valid, disabled, field }: FormMiddleware<FoodItem>) => {
 				const food = field('food', true);
 				const cost = field('cost', true);
 
@@ -63,7 +70,9 @@ export default factory(function EditFoodItemForm({ properties }) {
 							key="cancel"
 							disabled={!valid() || disabled()}
 							onClick={() => {
-								value(props);
+								store.executor(updateEditing)({
+									editing: false
+								});
 							}}
 						>
 							Cancel

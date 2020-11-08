@@ -1,15 +1,14 @@
 import { create, tsx } from '@dojo/framework/core/vdom';
 import Button from '@dojo/widgets/button';
 
+import store from '../middleware/store';
+import { editFoodItem, deleteFoodItem, updateEditing } from '../processes/foodItemsProcesses';
+
 import { FoodItem } from '../interfaces';
 
-type FoodItems = {
-	foodItems: FoodItem[]
-};
+const factory = create({store}).properties<{ foodItems: FoodItem[] }>();
 
-const factory = create().properties<FoodItems>();
-
-export default factory(function FoodItemList({ properties }) {
+export default factory(function FoodItemList({ properties, middleware: { store } }) {
 	const { foodItems = [] } = properties();
 	return (
 		<table>
@@ -30,9 +29,21 @@ export default factory(function FoodItemList({ properties }) {
 								<td>{ foodItem.food }</td>
 								<td>{ foodItem.cost.toFixed(2) }</td>
 								<td>
-									<Button>Edit</Button>
-									<Button>Delete</Button>
-									<Button>{
+									<Button onClick={() => {
+										store.executor(updateEditing)({
+											editing: true,
+											selectedItem: foodItem
+										})
+									}}>Edit</Button>
+									<Button onClick={() => {
+										store.executor(deleteFoodItem)(foodItem);
+									}}>Delete</Button>
+									<Button onClick={() => {
+										store.executor(editFoodItem)({
+											...foodItem,
+											status: foodItem.status ? undefined : 'bought'
+										});
+									}}>{
 										foodItem.status ? 'bought' : 'pending'
 									}</Button>
 							</td>
@@ -40,7 +51,7 @@ export default factory(function FoodItemList({ properties }) {
 					))
 					) : (
 						<tr>
-							<td colSpan={3}>No food for a lazy man</td>
+							<td colSpan={3}>No food available</td>
 						</tr>
 					)
 				}
