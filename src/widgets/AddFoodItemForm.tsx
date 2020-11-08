@@ -12,11 +12,11 @@ import { FoodItem } from '../interfaces';
 const factory = create({ store });
 
 export default factory(function AddFoodItemForm({ middleware: { store } }) {
+	const addFood = store.executor(addFoodItem);
 	return (
 		<Form
 			onSubmit={(foodItem: FoodItem) => {
-				console.log(foodItem);
-				store.executor(addFoodItem)(foodItem);
+				addFood(foodItem);
 			}}
 		>
 			{({ valid, disabled, field }: FormMiddleware<FoodItem>) => {
@@ -40,12 +40,11 @@ export default factory(function AddFoodItemForm({ middleware: { store } }) {
 						<div>
 							<TextInput
 								type="number"
-								step={0.25}
+								step={0.05}
 								key="cost"
 								required={true}
-								initialValue={String(cost.value())}
+								initialValue={cost.value()?.toFixed(2)}
 								onValue={(value) => {
-									console.log(value);
 									cost.value(Number(value));
 								}}
 								onValidate={cost.valid}

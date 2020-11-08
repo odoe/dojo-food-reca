@@ -13,13 +13,14 @@ const factory = create({ store }).properties<FoodItem>();
 
 export default factory(function EditFoodItemForm({ properties, middleware: { store } }) {
 	const props = properties();
+	const editFood = store.executor(editFoodItem);
+	const updateEdit = store.executor(updateEditing);
 	return (
 		<Form
 			initialValue={props}
 			onSubmit={(foodItem: FoodItem) => {
-				console.log(foodItem);
-				store.executor(editFoodItem)(foodItem);
-				store.executor(updateEditing)({
+				editFood(foodItem);
+				updateEdit({
 					editing: false
 				});
 			}}
@@ -45,7 +46,7 @@ export default factory(function EditFoodItemForm({ properties, middleware: { sto
 						<div>
 							<TextInput
 								type="number"
-								step={0.25}
+								step={0.05}
 								key="cost"
 								required={true}
 								initialValue={String(cost.value())}
