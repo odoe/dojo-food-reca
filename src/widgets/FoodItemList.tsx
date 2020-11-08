@@ -41,10 +41,10 @@ export default factory(function FoodItemList({ properties, middleware: { store }
 									<Button onClick={() => {
 										store.executor(editFoodItem)({
 											...foodItem,
-											status: foodItem.status ? undefined : 'bought'
+											status: foodItem.status ? undefined : 'Sold'
 										});
 									}}>{
-										foodItem.status ? 'bought' : 'pending'
+										foodItem.status ? 'Sold' : 'Purchase'
 									}</Button>
 							</td>
 						</tr>

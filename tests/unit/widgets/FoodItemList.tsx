@@ -56,7 +56,7 @@ describe('FoodItemList', () => {
             <td>
                 <Button onClick={noop}>Edit</Button>
                 <Button onClick={noop}>Delete</Button>
-                <Button onClick={noop}>pending</Button>
+                <Button onClick={noop}>Purchase</Button>
             </td>
         </tr>
         <tr key={1}>
@@ -66,7 +66,7 @@ describe('FoodItemList', () => {
             <td>
                 <Button onClick={noop}>Edit</Button>
                 <Button onClick={noop}>Delete</Button>
-                <Button onClick={noop}>pending</Button>
+                <Button onClick={noop}>Purchase</Button>
             </td>
         </tr>
         </tbody>
