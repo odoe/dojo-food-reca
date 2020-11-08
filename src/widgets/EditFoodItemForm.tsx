@@ -17,6 +17,7 @@ export default factory(function EditFoodItemForm({ properties, middleware: { sto
 	const updateEdit = store.executor(updateEditing);
 	return (
 		<Form
+			name="edit-food-item-form"
 			initialValue={props}
 			onSubmit={(foodItem: FoodItem) => {
 				editFood(foodItem);
