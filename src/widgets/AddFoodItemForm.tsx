@@ -15,6 +15,7 @@ export default factory(function AddFoodItemForm({ middleware: { store } }) {
 	const addFood = store.executor(addFoodItem);
 	return (
 		<Form
+			name="add-food-item-form"
 			onSubmit={(foodItem: FoodItem) => {
 				addFood(foodItem);
 			}}
