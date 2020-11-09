@@ -4,7 +4,7 @@ import { tsx } from '@dojo/framework/core/vdom';
 import Button from '@dojo/widgets/button';
 
 import FoodItemList from '../../../src/widgets/FoodItemList';
-import { FoodItem } from '../../../src/interfaces';
+import { FoodItem } from '../../../src/Data';
 
 describe('FoodItemList', () => {
 	const noop = () => { };
@@ -13,12 +13,14 @@ describe('FoodItemList', () => {
 		{
 			id: 0,
 			food: 'Apple',
-			cost: 1.99
+			cost: 1.99,
+			status: false
 		},
 		{
 			id: 1,
 			food: 'Lettuce',
-			cost: 0.75
+			cost: 0.75,
+			status: false
 		}
 	];
 	const baseAssertion = assertion(() => (

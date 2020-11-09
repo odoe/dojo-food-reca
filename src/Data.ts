@@ -2,7 +2,7 @@ export interface FoodItem {
 	id: number;
 	food: string;
 	cost: number;
-	status?: string;
+	status: boolean;
 }
 
 export interface State {

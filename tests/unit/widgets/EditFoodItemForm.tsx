@@ -6,14 +6,15 @@ import TextInput from '@dojo/widgets/text-input';
 import Button from '@dojo/widgets/button';
 
 import EditFoodItemForm from '../../../src/widgets/EditFoodItemForm';
-import { FoodItem } from '../../../src/interfaces';
+import { FoodItem } from '../../../src/Data';
 
 describe('EditFoodItemForm', () => {
 	const noop = () => { };
 	const value: FoodItem = {
 		id: 0,
 		food: 'Apple',
-		cost: 1.99
+		cost: 1.99,
+		status: false
 	};
 	const baseAssertion = assertion(() => (
 		<Form

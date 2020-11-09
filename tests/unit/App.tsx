@@ -6,7 +6,7 @@ import AddFoodItem from '../../src/widgets/AddFoodItemForm';
 import FoodItemList from '../../src/widgets/FoodItemList';
 import EditFoodItem from '../../src/widgets/EditFoodItemForm';
 import App from '../../src/App';
-import { FoodItem } from '../../src/interfaces';
+import { FoodItem } from '../../src/Data';
 
 import * as css from '../../src/App.m.css';
 
@@ -14,7 +14,8 @@ describe('App', () => {
 	const value: FoodItem = {
 		id: 0,
 		food: 'Apple',
-		cost: 1.99
+		cost: 1.99,
+		status: false
 	};
 	let editing = false;
 	const baseAssertion = assertion(() => (

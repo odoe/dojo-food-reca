@@ -4,7 +4,7 @@ import Button from '@dojo/widgets/button';
 import store from '../middleware/store';
 import { editFoodItem, deleteFoodItem, updateEditing } from '../processes/foodItemsProcesses';
 
-import { FoodItem } from '../interfaces';
+import { FoodItem } from '../Data';
 
 const factory = create({store}).properties<{ foodItems: FoodItem[] }>();
 
@@ -41,7 +41,7 @@ export default factory(function FoodItemList({ properties, middleware: { store }
 									<Button onClick={() => {
 										store.executor(editFoodItem)({
 											...foodItem,
-											status: foodItem.status ? undefined : 'Sold'
+											status: !foodItem.status
 										});
 									}}>{
 										foodItem.status ? 'Sold' : 'Purchase'

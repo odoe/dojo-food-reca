@@ -7,7 +7,7 @@ import Button from '@dojo/widgets/button';
 import store from '../middleware/store';
 import { updateEditing, editFoodItem } from '../processes/foodItemsProcesses';
 
-import { FoodItem } from '../interfaces';
+import { FoodItem } from '../Data';
 
 const factory = create({ store }).properties<FoodItem>();
 
